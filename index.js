@@ -20,13 +20,15 @@ const askQuestions = () => {
     .prompt(questions.description)
     .then(answers => askMore(answers))
     .then(answers => {
-        console.log(answers.sectionAnswers);
+        console.log(answers);
     })
     .catch(error => {
       if(error.isTtyError) {
         // Prompt couldn't be rendered in the current environment
+        throw new Error('Unable to create')
       } else {
         // Something else when wrong
+        console.error('Error');
       }
     });
 }
@@ -37,13 +39,15 @@ const askQuestions = () => {
 //     return allAnswers;
 //   };
 
+// Function to ask more questions based on sections selected for README
 const askMore = async (answers) => {
+    let ansJoined = {};
     for (let i = 1; i < answers.contents.length; i++){
-       const ans = await inquirer.prompt(questions[answers.contents[i]]); 
-       console.log(ans);
+       const ans = await inquirer.prompt(questions[answers.contents[i]]);  // Ask questions related to each section
+       ansJoined = {...ansJoined, ...ans}; // put all answers in one object
     }
     
-    return answers;
+    return {...answers, ...ansJoined}
 };
 
 // function call to initialize program
