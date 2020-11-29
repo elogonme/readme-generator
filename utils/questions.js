@@ -13,31 +13,41 @@ module.exports = questions = {
             message: 'Please describe your project: ',
         },
         {
+            type: 'input',
+            name: 'contributor',
+            message: `Please enter developer's Name: `,
+        },      
+        {
+            type: 'input',
+            name: 'githubuser',
+            message: `Please enter developer's GitHub profile URL: `,
+        },      
+        {
             type: 'checkbox',
             message: 'Which sections of contents would you like to add to your README?',
             name: 'contents',
             choices: [
-              new inquirer.Separator(' = Table of Contents = '),
+              
               {
-                name: 'Description',
+                name: 'Table of Contents',
               },
               {
-                name: 'Installation',
+                name: 'installation',
               },
               {
-                name: 'Usage',
+                name: 'usage',
               },
               {
-                name: 'License',
+                name: 'license',
               },
               {
-                name: 'Contributing',
+                name: 'contributing',
               },
               {
-                name: 'Tests',
+                name: 'tests',
               },
               {
-                name: 'Questions',
+                name: 'questions',
               },
               
             ],
@@ -61,15 +71,20 @@ module.exports = questions = {
     usage: [
             {
                 type: 'input',
+                name: 'usage',
+                message: 'Please enter usage instructions:',
+            }, 
+            {
+                type: 'input',
                 name: 'website',
                 message: 'Please enter URL to access deployed project: ',
             },        
         ],
     license: [
         {
-            type: 'checkbox',
+            type: 'list',
             message: 'Please select type of License ',
-            name: 'contents',
+            name: 'license',
             choices: [
               new inquirer.Separator(' = Choose a License = '),
               {
@@ -113,5 +128,27 @@ module.exports = questions = {
               return true;
             },
           },    
+        ],
+    contributing: [
+            {
+                type: 'input',
+                name: 'contributing',
+                message: 'Please enter Names of other Contributors: ',
+            },      
+        ],
+    tests: [
+            {
+                type: 'input',
+                name: 'tests',
+                message: 'Please enter Test instructions: ',
+            }
+        ],
+    questions: [
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Please enter email address for contact/questions: ',
+            },      
+                 
         ],
 }

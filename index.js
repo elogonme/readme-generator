@@ -14,11 +14,13 @@ function init() {
 }
 
 // Function to ask questions based on input from user
-function askQuestions(){
+const askQuestions = () => {
     inquirer
+    // Ask initial questions with discription of project and required contents
     .prompt(questions.description)
+    .then(answers => askMore(answers))
     .then(answers => {
-      console.log(answers);
+        console.log(answers.sectionAnswers);
     })
     .catch(error => {
       if(error.isTtyError) {
@@ -29,5 +31,21 @@ function askQuestions(){
     });
 }
 
+// const askMore = async (answers) => {
+//     // Ask additional questions based on sections of README selected
+//     const allAnswers = await askAboutEachSection(answers); 
+//     return allAnswers;
+//   };
+
+const askMore = async (answers) => {
+    for (let i = 1; i < answers.contents.length; i++){
+       const ans = await inquirer.prompt(questions[answers.contents[i]]); 
+       console.log(ans);
+    }
+    
+    return answers;
+};
+
 // function call to initialize program
 init();
+
