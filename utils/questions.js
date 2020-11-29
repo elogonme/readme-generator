@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-// Object with arrays of questions for user
+// Object with arrays of questions for user depending on sections of README
 module.exports = questions = {
     description: [
         {
@@ -76,8 +76,8 @@ module.exports = questions = {
             }, 
             {
                 type: 'input',
-                name: 'website',
-                message: 'Please enter URL to access deployed project: ',
+                name: 'repo',
+                message: 'Please enter repository URL: ',
             },        
         ],
     license: [

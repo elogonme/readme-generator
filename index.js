@@ -1,17 +1,39 @@
 // Required packages
 const inquirer = require('inquirer');
 const fs = require('fs');
-const util = require('util');
-const questions = require('./utils/questions')
+//  const util = require('util');
+const questions = require('./utils/questions');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // function to write README file
 function writeToFile(fileName, data) {
+    fs.readFile(fileName, 'utf8', (error, data1) => {
+        // Check if README file existing
+        if (!data1) { // if not save new file
+            fs.writeFile(fileName, data, (err) =>
+            err ? console.error(err) : console.log('readme saved!'));
+            } else { // if README existing ask for confirmation to overwrite
+                inquirer.prompt( {
+                    type: 'confirm',
+                    name: 'yesNo',
+                    message: 'Existing README file will be overwritten! ',
+                })
+                .then(isYes => {
+                    if (isYes.yesNo) {
+                        // If confirmed - delete old file and save new
+                        fs.unlinkSync(fileName);
+                        writeToFile(fileName, data)
+                    } else return false;
+                });
+            }
+    });
 }
+    
 
 // function to initialize program
 function init() {
    askQuestions();
-}
+};
 
 // Function to ask questions based on input from user
 const askQuestions = () => {
@@ -19,8 +41,10 @@ const askQuestions = () => {
     // Ask initial questions with discription of project and required contents
     .prompt(questions.description)
     .then(answers => askMore(answers))
-    .then(answers => {
-        console.log(answers);
+    .then(data => {
+        console.log(data);
+        const readMe = generateMarkdown(data);
+        writeToFile('generated-readme.md', readMe);
     })
     .catch(error => {
       if(error.isTtyError) {
@@ -28,16 +52,10 @@ const askQuestions = () => {
         throw new Error('Unable to create')
       } else {
         // Something else when wrong
-        console.error('Error');
+        console.error('Error', error);
       }
     });
 }
-
-// const askMore = async (answers) => {
-//     // Ask additional questions based on sections of README selected
-//     const allAnswers = await askAboutEachSection(answers); 
-//     return allAnswers;
-//   };
 
 // Function to ask more questions based on sections selected for README
 const askMore = async (answers) => {
