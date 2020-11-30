@@ -17,7 +17,7 @@
 
 ## Installation
 
-Download files from provided Repo URL. Run terminal and navigate to project folder. The application will be invoked by using the following command:  
+Download files from provided Repo URL. Run terminal and navigate to project folder. Make sure node is installed. Run `npm install` to install all dependencies before running app.
 Web Application can be accessed at [https://github.com/elogonme/readme-generator](https://github.com/elogonme/readme-generator)
 
 ## Usage
