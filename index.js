@@ -1,7 +1,6 @@
 // Required packages
 const inquirer = require('inquirer');
 const fs = require('fs');
-//  const util = require('util');
 const questions = require('./utils/questions');
 const generateMarkdown = require('./utils/generateMarkdown');
 
@@ -43,7 +42,6 @@ const askQuestions = () => {
     // Ask more questions based on sections selected
     .then(answers => askMore(answers))
     .then(data => {
-        console.log(data);
         const readMe = generateMarkdown(data);
         writeToFile('generated-readme.md', readMe);
     })
@@ -71,4 +69,3 @@ const askMore = async (answers) => {
 
 // function call to initialize program
 init();
-

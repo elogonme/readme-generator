@@ -14,13 +14,13 @@ module.exports = questions = {
         },
         {
             type: 'input',
-            name: 'contributor',
+            name: 'developer',
             message: `Please enter developer's Name: `,
         },      
         {
             type: 'input',
             name: 'githubuser',
-            message: `Please enter developer's GitHub profile URL: `,
+            message: `Please enter developer's GitHub username: `,
         },      
         {
             type: 'checkbox',
@@ -134,14 +134,6 @@ module.exports = questions = {
               },
               
             ],
-            // Check if nothing is selected
-            validate: function (answer) {
-              if (answer.length < 1) {
-                return 'You must choose at least one option.';
-              }
-      
-              return true;
-            },
           },    
         ],
     contributing: [
