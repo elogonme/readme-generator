@@ -40,6 +40,7 @@ const askQuestions = () => {
     inquirer
     // Ask initial questions with discription of project and required contents
     .prompt(questions.description)
+    // Ask more questions based on sections selected
     .then(answers => askMore(answers))
     .then(data => {
         console.log(data);

@@ -29,7 +29,7 @@ module.exports = questions = {
             choices: [
               
               {
-                name: 'Table of Contents',
+                name: 'contents',
               },
               {
                 name: 'installation',
@@ -44,7 +44,7 @@ module.exports = questions = {
                 name: 'contributing',
               },
               {
-                name: 'tests',
+                name: 'testing',
               },
               {
                 name: 'questions',
@@ -62,6 +62,11 @@ module.exports = questions = {
           },
         ],
     installation: [
+            {
+                type: 'input',
+                name: 'install',
+                message: 'Enter installation instructions: ',
+            },        
             {
                 type: 'input',
                 name: 'website',
@@ -89,33 +94,43 @@ module.exports = questions = {
               new inquirer.Separator(' = Choose a License = '),
               {
                 name: 'None',
+                value: 0
               },
               {
                 name: 'GNU General Public',
+                value: 1
               },
               {
                 name: 'MIT',
+                value: 2
               },
               {
                 name: 'BSD 2-Clause "Simplified" License',
+                value: 3
               },
               {
                 name: 'Boost Software License 1.0',
+                value: 4
               },
               {
                 name: 'Creative Commons Zero v1.0 Universal',
+                value: 5
               },
               {
                 name: 'Eclipse Public License',
+                value: 6
               },
               {
                 name: 'Mozilla Public License',
+                value: 7
               },
               {
                 name: 'The Unlicense',
+                value: 8
               },
               {
                 name: 'Other',
+                value: 9
               },
               
             ],
@@ -133,17 +148,18 @@ module.exports = questions = {
             {
                 type: 'input',
                 name: 'contributing',
-                message: 'Please enter Names of other Contributors: ',
+                message: 'Please enter contribution guidelines: ',
             },      
         ],
-    tests: [
+    testing: [
             {
                 type: 'input',
-                name: 'tests',
+                name: 'testing',
                 message: 'Please enter Test instructions: ',
             }
         ],
     questions: [
+        
             {
                 type: 'input',
                 name: 'email',
