@@ -10,7 +10,7 @@ function writeToFile(fileName, data) {
         // Check if README file existing
         if (!data1) { // if not save new file
             fs.writeFile(fileName, data, (err) =>
-            err ? console.error(err) : console.log('readme saved!'));
+            err ? console.error(err) : console.log('generated-readme.md saved!'));
             } else { // if README existing ask for confirmation to overwrite
                 inquirer.prompt( {
                     type: 'confirm',

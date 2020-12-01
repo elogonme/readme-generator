@@ -27,9 +27,11 @@ module.exports = questions = {
             message: 'Which sections of contents would you like to add to your README?',
             name: 'contents',
             choices: [
-              
               {
                 name: 'contents',
+              },
+              {
+                name: 'screenshot',
               },
               {
                 name: 'installation',
@@ -56,10 +58,17 @@ module.exports = questions = {
               if (answer.length < 1) {
                 return 'You must choose at least one option.';
               }
-      
               return true;
             },
           },
+        ],
+    screenshot: [
+          {
+            type: 'input',
+            name: 'imageSrc',
+            message: 'Please enter your screenshot image source path or URL (default: demo.jpg): ',
+            default: 'demo.jpg'
+          }   
         ],
     installation: [
             {
